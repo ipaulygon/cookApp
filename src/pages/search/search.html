@@ -1,0 +1,85 @@
+<!--
+  Generated template for the Search page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="sec">
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="search">
+    <ion-segment-button value="posts">
+      Recipes
+    </ion-segment-button>
+    <ion-segment-button value="users">
+      Users
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="search">
+    <!--POSTS-->
+    <ion-list *ngSwitchCase="'posts'">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-80>
+            <form [formGroup]="form">
+              <ion-item>
+                <ion-input type="text" formControlName="searchRecipe" placeholder="Search"></ion-input>
+              </ion-item>
+            </form>
+          </ion-col>
+          <ion-col width-20>
+            <button ion-button color="prim" outline (click)="searchRecipe()"><ion-icon name="search"></ion-icon></button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br>
+      <ion-item *ngFor="let post of posts">
+        <ion-thumbnail item-left>
+          <img src="assets/icon/favicon.ico">
+        </ion-thumbnail>
+        <h2>{{post.recipeName}}</h2>
+        <p>{{post.userFirst}} {{post.userLast}} @{{post.userName}}</p>
+        <button ion-button clear item-right (click)="view(post.recipeId,post.recipeName,post.recipeDesc,post.userName,post.userFirst,post.userLast,post.recipeThumb)">View</button>
+      </ion-item>
+      <ion-item *ngFor="let none of nonePosts">
+        <div style="text-align: center"><h2>{{none.none}}</h2></div>
+      </ion-item>
+    </ion-list>
+    <!--END OF POSTS-->
+    <!--USERS-->
+    <ion-list *ngSwitchCase="'users'">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-80>
+            <form [formGroup]="form1">
+              <ion-item>
+                <ion-input type="text" formControlName="searchUser" placeholder="Search"></ion-input>
+              </ion-item>
+            </form>
+          </ion-col>
+          <ion-col width-20>
+            <button ion-button color="prim" outline (click)="searchUser()"><ion-icon name="search"></ion-icon></button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br>
+      <ion-item *ngFor="let user of users" (click)="userAction()">
+        <ion-avatar item-left>
+          <img src="assets/image.jpg">
+        </ion-avatar>
+        <h2>{{user.userFirst}} {{user.userLast}}</h2>
+        <p>@{{user.userName}}</p>
+      </ion-item>
+      <ion-item *ngFor="let none of noneUsers">
+        <div style="text-align: center"><h2>{{none.none}}</h2></div>
+      </ion-item>
+    </ion-list>
+    <!--END OF USERS-->
+  </div>
+</ion-content>

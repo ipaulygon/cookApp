@@ -1,0 +1,36 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--<ion-header>
+
+  <ion-navbar>
+    <ion-title>login</ion-title>
+  </ion-navbar>
+
+</ion-header>-->
+
+
+<ion-content padding>
+  <br><br>
+  <h2 style="text-align: center">Login</h2>
+  <br><br>
+  <form [formGroup]="form">
+      <ion-item>
+        <ion-input type="text" formControlName="user" placeholder="Username/Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" formControlName="pass" placeholder="Password"></ion-input>
+      </ion-item>
+  </form>
+  <br><br><br>
+  <div style="text-align: center">
+    <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+    <p *ngIf="submitPass" style="color: #ea6153;">Invalid Credentials.</p>
+    <button ion-button color="prim" (click)="login()">Login</button>
+  </div>
+  <br>
+  <div style="text-align: center"><button ion-button color="dark" (click)="register()">Register</button></div>
+</ion-content>

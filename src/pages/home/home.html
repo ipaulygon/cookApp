@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="sec">
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let feed of feeds">
+      <ion-thumbnail item-left>
+        <!--<img [src]="feed.recipeThumb">-->
+        <img src="assets/icon/favicon.ico">
+      </ion-thumbnail>
+      <h2>{{feed.recipeName}}</h2>
+      <p>{{feed.userFirst}} {{feed.userLast}} @{{feed.userName}}</p>
+      <button ion-button clear item-right (click)="view(feed.recipeId,feed.recipeName,feed.recipeDesc,feed.userName,feed.userFirst,feed.userLast,feed.recipeThumb)">View</button>
+    </ion-item>
+    <ion-item *ngFor="let none of noneFeed">
+      <div style="text-align: center"><h2>{{none.none}}</h2></div>
+    </ion-item>
+  </ion-list>
+</ion-content>

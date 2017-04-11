@@ -1,0 +1,99 @@
+<!--
+  Generated template for the Create page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="sec">
+    <ion-title>Add Recipe</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div style="text-align: center">
+    <img src="assets/icon/favicon.ico" alt="">
+    <br><br>
+    <form [formGroup]="form2">
+      <button ion-button outline color="prim" (click)="upload()">Upload Picture</button>
+      <ion-item>
+        <ion-label stacked>Recipe Name</ion-label>
+        <ion-input type="text" formControlName="recipe"></ion-input>
+      </ion-item>
+      <ion-textarea placeholder="Description" formControlName="recipeDesc"></ion-textarea>
+    </form>
+  </div>
+  <hr>
+  <form [formGroup]="form">
+    <div formArrayName="ingredients">
+      <ion-list *ngFor="let ingredient of form.controls.ingredients.controls; let i=index">
+        <button ion-button clear *ngIf="form.controls.ingredients.controls.length > 3" (click)="removeIngredients(i)">X</button>
+        <div [formGroupName]="i">
+          <ion-grid>
+            <ion-row>
+              {{i+1}}.
+              <ion-col width-20>
+                <ion-item>
+                  <ion-label stacked>Qty</ion-label>
+                  <ion-input type="text" formControlName="quantity"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col width-30>
+                <ion-item>
+                  <ion-label stacked>Desc</ion-label>
+                  <ion-select formControlName="description">
+                    <ion-option value="cup">cup</ion-option>
+                    <ion-option value="fl">fl</ion-option>
+                    <ion-option value="g">g</ion-option>
+                    <ion-option value="kg">kg</ion-option>
+                    <ion-option value="L">L</ion-option>
+                    <ion-option value="lb">lb</ion-option>
+                    <ion-option value="mL">mL</ion-option>
+                    <ion-option value="mg">mg</ion-option>
+                    <ion-option value="oz">oz</ion-option>
+                    <ion-option value="pcs.">pcs.</ion-option>
+                    <ion-option value="pch">pch</ion-option>
+                    <ion-option value="pt">pt</ion-option>
+                    <ion-option value="qt">qt</ion-option>
+                    <ion-option value="tsp.">tsp.</ion-option>
+                    <ion-option value="tbp.">tbp.</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col width-50>
+                <ion-item>
+                  <ion-label stacked>Ingredient</ion-label>
+                  <ion-input type="text" formControlName="name"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-list>
+    </div>
+    <div style="text-align: center"><button ion-button outline color="prim" icon-left (click)="addIngredients()"><ion-icon name="add"></ion-icon>Add Ingredient</button></div>
+  </form>
+  <form [formGroup]="form1">
+    <div formArrayName="steps">
+      <ion-list *ngFor="let step of form1.controls.steps.controls; let x=index">
+        <button ion-button clear *ngIf="form1.controls.steps.controls.length > 1" (click)="removeSteps(i)">X</button>
+        <div [formGroupName]="x">
+          <ion-grid>
+            <ion-row>
+              {{x+1}}.
+              <ion-col width-100>
+                <ion-item>
+                  <ion-label stacked>Step</ion-label>
+                  <ion-textarea type="text" formControlName="step"></ion-textarea>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-list>
+    </div>
+    <div style="text-align: center"><button ion-button color="prim" outline icon-left (click)="addSteps()"><ion-icon name="add"></ion-icon>Add Step</button></div>
+  </form>
+  <div style="text-align: center"><button ion-button color="prim" icon-right (click)="save()">Save<ion-icon name="cloud-upload"></ion-icon></button></div>
+</ion-content>

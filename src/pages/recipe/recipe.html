@@ -1,0 +1,36 @@
+<!--
+  Generated template for the Recipe page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="sec">
+    <ion-buttons start>
+      <button ion-button icon-only clear (click)="back()">
+        Close
+      </button>
+    </ion-buttons>
+    <ion-title>View Recipe</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div style="text-align: center">
+    <img src="assets/icon/favicon.ico">
+    <h2>{{recipe}}</h2>
+    <p>by<br>{{first}} {{last}}</p>
+  </div>
+  <p>Description: {{desc}}</p>
+  <ion-list no-lines>
+    <h4>Ingredients</h4>
+    <ion-label *ngFor="let ingredient of ingredients; let i=index">
+      • {{ingredient.quantity}} {{ingredient.description}} {{ingredient.ingredient}}
+    </ion-label>
+    <h4>Steps</h4>
+    <ion-label *ngFor="let step of steps; let i=index">
+      {{i+1}}. {{step.step}}
+    </ion-label>
+  </ion-list>
+</ion-content>

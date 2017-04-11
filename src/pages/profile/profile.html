@@ -1,0 +1,96 @@
+<!--
+  Generated template for the Profile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="sec">
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div style="text-align: center">
+    <img src="assets/icon/favicon.ico">
+    <h4>{{first}} {{last}}</h4>
+  </div>
+  <br>
+  <!-- SEGMENT ITSELF -->
+  <ion-segment [(ngModel)]="profile" color="sec">
+    <ion-segment-button value="posts">
+      <ion-icon name="list"></ion-icon>
+    </ion-segment-button>
+    <!--<ion-segment-button value="pins">
+      <ion-icon name="cloud-download"></ion-icon>
+    </ion-segment-button>-->
+    <ion-segment-button value="following">
+      <ion-icon name="contacts"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="followers">
+      <ion-icon name="people"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+  <!--SWITCHES-->
+  <div [ngSwitch]="profile">
+    <!--POSTS-->
+    <ion-list *ngSwitchCase="'posts'">
+      <br>
+      <ion-item *ngFor="let post of selfPosts">
+        <ion-thumbnail item-left> 
+          <img src="assets/icon/favicon.ico">
+        </ion-thumbnail>
+        <h2>{{post.recipeName}}</h2>
+        <p>{{post.userFirst}} {{post.userLast}} @{{post.userName}}</p>
+        <button ion-button clear item-right (click)="view(post.recipeId,post.recipeName,post.recipeDesc,post.userName,post.userFirst,post.userLast,post.recipeThumb)">View</button>
+      </ion-item>
+      <ion-item *ngFor="let none of noneSelfPosts">
+        <div style="text-align: center"><h2>{{none.none}}</h2></div>
+      </ion-item>
+    </ion-list>
+    <!--END OF POSTS-->
+    <!--PINS-->
+    <!--<ion-list *ngSwitchCase="'pins'">
+      <br>
+      <ion-item>
+        <ion-thumbnail item-left>
+          <img src="assets/icon/favicon.ico">
+        </ion-thumbnail>
+        <h2>Luna</h2>
+      </ion-item>
+      ...
+    </ion-list>-->
+    <!--END OF PINS-->
+    <!--FOLLOWING-->
+    <ion-list *ngSwitchCase="'following'">
+      <br>
+      <ion-item *ngFor="let user of following" (click)="followingAction()">
+        <ion-avatar item-left>
+          <img src="assets/image.jpg">
+        </ion-avatar>
+        <h2>{{user.userFirst}} {{user.userLast}}</h2>
+        <p>@{{user.userName}}</p>
+      </ion-item>
+      <ion-item *ngFor="let none of noneFollowing">
+        <div style="text-align: center"><h2>{{none.none}}</h2></div>
+      </ion-item>
+    </ion-list>
+    <!--FOLLOWING-->
+    <!--FOLLOWERS-->
+    <ion-list *ngSwitchCase="'followers'">
+      <br>
+      <ion-item *ngFor="let user of follower" (click)="followerAction()">
+        <ion-avatar item-left>
+          <img src="assets/image.jpg">
+        </ion-avatar>
+        <h2>{{user.userFirst}} {{user.userLast}}</h2>
+        <p>@{{user.userName}}</p>
+      </ion-item>
+      <ion-item *ngFor="let none of noneFollower">
+        <div style="text-align: center"><h2>{{none.none}}</h2></div>
+      </ion-item>
+    </ion-list>
+    <!--FOLLOWERS-->
+  </div>
+</ion-content>
